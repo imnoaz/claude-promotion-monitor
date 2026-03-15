@@ -1,30 +1,30 @@
 # Claude Promotion Monitor
 
-A macOS menubar app that tracks Claude's [March 2026 usage promotion](https://support.claude.com/en/articles/14063676-claude-march-2026-usage-promotion) status in real-time.
+Claudeの[2026年3月使用量プロモーション](https://support.claude.com/en/articles/14063676-claude-march-2026-usage-promotion)の状況をリアルタイムで表示するmacOSメニューバーアプリです。
 
-<img src="docs/screenshot.png" width="340" alt="Claude Promotion Monitor screenshot">
+<img src="docs/screenshot.png" width="340" alt="Claude Promotion Monitor スクリーンショット">
 
-## What is this?
+## これは何？
 
-From March 13 through March 27, 2026, Claude's usage is **doubled during off-peak hours** (outside 8 AM–2 PM ET). The bonus usage doesn't count toward weekly limits.
+2026年3月13日〜3月27日の期間、**オフピーク時間帯（米国東部時間 8:00〜14:00 以外）のClaude使用量が2倍**になります。ボーナス分は週間制限にカウントされません。
 
-This app sits in your menubar and shows:
+このアプリはメニューバーに常駐し、以下を表示します：
 
-- **Current status** — Peak (1×) or Off-peak (2×) at a glance
-- **24-hour clock** — Visual representation of peak/off-peak periods in your local timezone with a live needle
-- **Countdown timer** — Time remaining until the next peak/off-peak switch
-- **Promotion status** — Whether the promotion is active and how much time is left
+- **現在のステータス** — ピーク（1×）またはオフピーク（2×）を一目で確認
+- **24時間時計** — ピーク／オフピーク時間帯をローカルタイムゾーンで視覚的に表示
+- **カウントダウンタイマー** — 次のピーク／オフピーク切り替えまでの残り時間
+- **プロモーション状況** — プロモーションの有効状態と残り期間
 
-## Eligible Plans
+## 対象プラン
 
-Free / Pro / Max / Team (Enterprise is excluded)
+Free / Pro / Max / Team（Enterpriseは対象外）
 
-## Requirements
+## 動作要件
 
-- macOS 14.0 (Sonoma) or later
-- Xcode Command Line Tools (`xcode-select --install`)
+- macOS 14.0（Sonoma）以降
+- Xcode Command Line Tools（`xcode-select --install`）
 
-## Build & Run
+## ビルドと起動
 
 ```bash
 git clone https://github.com/imnoaz/claude-promotion-monitor.git
@@ -34,22 +34,22 @@ chmod +x build.sh
 open "Claude Promotion Monitor.app"
 ```
 
-## Install
+## インストール
 
 ```bash
 cp -r "Claude Promotion Monitor.app" /Applications/
 ```
 
-## Customization
+## カスタマイズ
 
-Promotion dates and peak hours are defined in `Sources/TimeManager.swift`:
+プロモーション期間とピーク時間帯は `Sources/TimeManager.swift` で定義されています：
 
 ```swift
-// Peak hours (ET)
+// ピーク時間帯（米国東部時間）
 let peakStartHour = 8
 let peakEndHour = 14
 
-// Promotion period (ET)
+// プロモーション期間（米国東部時間）
 startComponents.year = 2026
 startComponents.month = 3
 startComponents.day = 13
@@ -57,15 +57,15 @@ startComponents.day = 13
 endComponents.day = 28
 ```
 
-Edit these values and rebuild to adapt the app to a different promotion period.
+これらの値を変更してリビルドすれば、別のプロモーション期間にも対応できます。
 
-## Tech Stack
+## 技術構成
 
 - Swift / SwiftUI
-- `MenuBarExtra` with `.window` style
-- Custom `Canvas`-based 24-hour clock
+- `MenuBarExtra`（`.window`スタイル）
+- `Canvas`ベースのカスタム24時間時計
 - Swift Package Manager
 
-## License
+## ライセンス
 
 MIT
